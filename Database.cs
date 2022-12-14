@@ -53,6 +53,18 @@ namespace ZadanieSOFI
             dataGridView.DataSource = Data.Tables[tableName];
         }
 
+        public void SelectDataFromDatabase(string tableName, string condition, DataGridView dataGridView)
+        {
+            string select = "SELECT * FROM " + tableName + " WHERE " + condition;
+
+            Data = new DataSet();
+
+            Adapter = new OracleDataAdapter(select, Connection);
+            Adapter.Fill(Data, tableName);
+
+            dataGridView.DataSource = Data.Tables[tableName];
+        }
+
         public string Name { get => name; set => name = value; }
         public string Password { get => password; set => password = value; }
         public OracleConnection Connection { get => connection; set => connection = value; }
