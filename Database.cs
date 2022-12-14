@@ -51,9 +51,57 @@ namespace ZadanieSOFI
             }
         }
 
-        public void InsertIntoDatabase (string tableName, string[] values)
+        public void InsertIntoDatabase (string tableName, StringBuilder values)
         {
-            
+            try
+            {
+                string insert = "INSERT INTO " + tableName + " VALUES (" + values.ToString() + ")";
+
+                Sql = new OracleCommand(insert, Connection);
+                int result = Sql.ExecuteNonQuery();
+            }
+            catch (OracleException e)
+            {
+                MessageBox.Show(e.Message, "Error");
+            }
+        }
+
+        public void InsertIntoDatabase(string tableName, StringBuilder columns, StringBuilder values)
+        {
+            try
+            {
+                string insert = "INSERT INTO " + tableName + "(" + columns.ToString() + ") " + "VALUES (" + values.ToString() + ")";
+
+                Sql = new OracleCommand(insert, Connection);
+                int result = Sql.ExecuteNonQuery();
+            }
+            catch (OracleException e)
+            {
+                MessageBox.Show(e.Message, "Error");
+            }
+        }
+
+        public void UpdateDataInDatabase(string tableName, string[] columns, string[] values, string earNumber)
+        {
+            StringBuilder stringBuilder = null;
+
+            for (int i = 0; i < columns.Length; i++)
+            {
+                stringBuilder.Append(columns[i] + " = " + values[i] + ", ");
+            }
+
+            stringBuilder.Length = stringBuilder.Length - 2;
+
+            try
+            {
+                string update = "UPDATE " + tableName + "SET " + stringBuilder.ToString() + "WHERE USNE_CISLO = " + earNumber;
+                Sql = new OracleCommand(update, Connection);
+                int result = Sql.ExecuteNonQuery();
+            }
+            catch (OracleException e)
+            {
+                MessageBox.Show(e.Message, "Error");
+            }
         }
 
         public void SelectDataFromDatabase(string tableName, DataGridView dataGridView)
