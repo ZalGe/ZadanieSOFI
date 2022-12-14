@@ -30,20 +30,9 @@ namespace ZadanieSOFI
 
         private void Cow_Load(object sender, EventArgs e)
         {
-            string tableCow = "KRAVA";
-            string tableLactation = "LAKTACNY_ZAZNAM";
-            string tableHealth = "ZDRAVOTNY_ZAZNAM";
-
             mainPage.Database.SelectDataFromDatabase(tableCow, dataGridView1);
-            dataSetCow = mainPage.Database.Data;
-
             mainPage.Database.SelectDataFromDatabase(tableHealth, dataGridView2);
-            dataSetHealth = mainPage.Database.Data;
-
             mainPage.Database.SelectDataFromDatabase(tableLactation, dataGridView3);
-            dataSetLactation = mainPage.Database.Data;
-
-
         }
 
         private void dataGridView1_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
@@ -66,9 +55,24 @@ namespace ZadanieSOFI
 
         }
 
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string cowNumber = dataGridView1.SelectedRows[0].Cells["EarNumberCow"].Value.ToString();
+
+            DialogResult dialogResult = MessageBox.Show("Naozaj chcete vymazať kravu s ušným číslom: " + cowNumber, 
+                "Vymazanie kravy", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                mainPage.Database.DeleteFromDatabase(tableCow, cowNumber);
+                mainPage.Database.SelectDataFromDatabase(tableCow, dataGridView1);
+            }
+        }
+
         MainPage mainPage;
-        DataSet dataSetCow;
-        DataSet dataSetLactation;
-        DataSet dataSetHealth;
+        string tableCow = "KRAVA";
+        string tableLactation = "LAKTACNY_ZAZNAM";
+        string tableHealth = "ZDRAVOTNY_ZAZNAM";
     }
 }
