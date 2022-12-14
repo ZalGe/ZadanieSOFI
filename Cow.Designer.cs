@@ -53,12 +53,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.IDHealthInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateHealthInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NoteHealthInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StateHealthInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CapabilityHealthInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EarNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -80,6 +74,12 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.IDHealthInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateHealthInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NoteHealthInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StateHealthInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CapabilityHealthInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EarNumberHealth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -365,9 +365,11 @@
             this.NoteHealthInfo,
             this.StateHealthInfo,
             this.CapabilityHealthInfo,
+
             this.EarNumber});
             this.dataGridView2.Location = new System.Drawing.Point(7, 8);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersWidth = 51;
@@ -375,65 +377,6 @@
             this.dataGridView2.Size = new System.Drawing.Size(280, 425);
             this.dataGridView2.TabIndex = 4;
             this.dataGridView2.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dataGridView2_RowStateChanged);
-            // 
-            // IDHealthInfo
-            // 
-            this.IDHealthInfo.DataPropertyName = "ID";
-            this.IDHealthInfo.HeaderText = "ID";
-            this.IDHealthInfo.MinimumWidth = 6;
-            this.IDHealthInfo.Name = "IDHealthInfo";
-            this.IDHealthInfo.ReadOnly = true;
-            this.IDHealthInfo.Visible = false;
-            this.IDHealthInfo.Width = 125;
-            // 
-            // DateHealthInfo
-            // 
-            this.DateHealthInfo.DataPropertyName = "DATUM";
-            this.DateHealthInfo.HeaderText = "Zdravotny zaznam";
-            this.DateHealthInfo.MinimumWidth = 6;
-            this.DateHealthInfo.Name = "DateHealthInfo";
-            this.DateHealthInfo.ReadOnly = true;
-            this.DateHealthInfo.Width = 125;
-            // 
-            // NoteHealthInfo
-            // 
-            this.NoteHealthInfo.DataPropertyName = "POZNAMKA";
-            this.NoteHealthInfo.HeaderText = "Poznamka";
-            this.NoteHealthInfo.MinimumWidth = 6;
-            this.NoteHealthInfo.Name = "NoteHealthInfo";
-            this.NoteHealthInfo.ReadOnly = true;
-            this.NoteHealthInfo.Visible = false;
-            this.NoteHealthInfo.Width = 125;
-            // 
-            // StateHealthInfo
-            // 
-            this.StateHealthInfo.DataPropertyName = "ZDRAVOTNY_STAV";
-            this.StateHealthInfo.HeaderText = "Zdravotny stav";
-            this.StateHealthInfo.MinimumWidth = 6;
-            this.StateHealthInfo.Name = "StateHealthInfo";
-            this.StateHealthInfo.ReadOnly = true;
-            this.StateHealthInfo.Visible = false;
-            this.StateHealthInfo.Width = 125;
-            // 
-            // CapabilityHealthInfo
-            // 
-            this.CapabilityHealthInfo.DataPropertyName = "ZDRAVOTNA_SPOSOBILOST";
-            this.CapabilityHealthInfo.HeaderText = "Zdravotna sposobilost";
-            this.CapabilityHealthInfo.MinimumWidth = 6;
-            this.CapabilityHealthInfo.Name = "CapabilityHealthInfo";
-            this.CapabilityHealthInfo.ReadOnly = true;
-            this.CapabilityHealthInfo.Visible = false;
-            this.CapabilityHealthInfo.Width = 125;
-            // 
-            // EarNumber
-            // 
-            this.EarNumber.DataPropertyName = "USNE_CISLO";
-            this.EarNumber.HeaderText = "Usne cislo";
-            this.EarNumber.MinimumWidth = 6;
-            this.EarNumber.Name = "EarNumber";
-            this.EarNumber.ReadOnly = true;
-            this.EarNumber.Visible = false;
-            this.EarNumber.Width = 125;
             // 
             // tabPage3
             // 
@@ -650,6 +593,7 @@
             this.button3.TabIndex = 6;
             this.button3.Text = "Delete";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -661,6 +605,65 @@
             this.button4.Text = "Cancel";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            // 
+            // IDHealthInfo
+            // 
+            this.IDHealthInfo.DataPropertyName = "ID";
+            this.IDHealthInfo.HeaderText = "ID";
+            this.IDHealthInfo.MinimumWidth = 6;
+            this.IDHealthInfo.Name = "IDHealthInfo";
+            this.IDHealthInfo.ReadOnly = true;
+            this.IDHealthInfo.Visible = false;
+            this.IDHealthInfo.Width = 125;
+            // 
+            // DateHealthInfo
+            // 
+            this.DateHealthInfo.DataPropertyName = "DATUM";
+            this.DateHealthInfo.HeaderText = "Zdravotny zaznam";
+            this.DateHealthInfo.MinimumWidth = 6;
+            this.DateHealthInfo.Name = "DateHealthInfo";
+            this.DateHealthInfo.ReadOnly = true;
+            this.DateHealthInfo.Width = 125;
+            // 
+            // NoteHealthInfo
+            // 
+            this.NoteHealthInfo.DataPropertyName = "POZNAMKA";
+            this.NoteHealthInfo.HeaderText = "Poznamka";
+            this.NoteHealthInfo.MinimumWidth = 6;
+            this.NoteHealthInfo.Name = "NoteHealthInfo";
+            this.NoteHealthInfo.ReadOnly = true;
+            this.NoteHealthInfo.Visible = false;
+            this.NoteHealthInfo.Width = 125;
+            // 
+            // StateHealthInfo
+            // 
+            this.StateHealthInfo.DataPropertyName = "ZDRAVOTNY_STAV";
+            this.StateHealthInfo.HeaderText = "Zdravotny stav";
+            this.StateHealthInfo.MinimumWidth = 6;
+            this.StateHealthInfo.Name = "StateHealthInfo";
+            this.StateHealthInfo.ReadOnly = true;
+            this.StateHealthInfo.Visible = false;
+            this.StateHealthInfo.Width = 125;
+            // 
+            // CapabilityHealthInfo
+            // 
+            this.CapabilityHealthInfo.DataPropertyName = "ZDRAVOTNA_SPOSOBILOST";
+            this.CapabilityHealthInfo.HeaderText = "Zdravotna sposobilost";
+            this.CapabilityHealthInfo.MinimumWidth = 6;
+            this.CapabilityHealthInfo.Name = "CapabilityHealthInfo";
+            this.CapabilityHealthInfo.ReadOnly = true;
+            this.CapabilityHealthInfo.Visible = false;
+            this.CapabilityHealthInfo.Width = 125;
+            // 
+            // EarNumberHealth
+            // 
+            this.EarNumberHealth.DataPropertyName = "USNE_CISLO";
+            this.EarNumberHealth.HeaderText = "Usne cislo";
+            this.EarNumberHealth.MinimumWidth = 6;
+            this.EarNumberHealth.Name = "EarNumberHealth";
+            this.EarNumberHealth.ReadOnly = true;
+            this.EarNumberHealth.Visible = false;
+            this.EarNumberHealth.Width = 125;
             // 
             // Cow
             // 
@@ -734,17 +737,17 @@
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.DataGridViewTextBoxColumn EarNumberCow;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumberOfCalfs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDHealthInfo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DateHealthInfo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NoteHealthInfo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StateHealthInfo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CapabilityHealthInfo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EarNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDLactationInfo;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumLactationInfo;
         private System.Windows.Forms.DataGridViewTextBoxColumn NoteLactationInfo;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateLactationInfo;
         private System.Windows.Forms.DataGridViewTextBoxColumn VolumeLactationInfo;
         private System.Windows.Forms.DataGridViewTextBoxColumn EarNumberLactationInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDHealthInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateHealthInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NoteHealthInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StateHealthInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CapabilityHealthInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EarNumberHealth;
     }
 }

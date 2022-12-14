@@ -66,6 +66,7 @@ namespace ZadanieSOFI
         {
             // update lactation info
             mainPage.Database.SelectDataFromDatabase("LAKTACNY_ZAZNAM", "USNE_CISLO = '" + selectedCow + "'", dataGridView3);
+
         }
 
         private void dataGridView1_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
@@ -95,12 +96,25 @@ namespace ZadanieSOFI
 
         }
 
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Naozaj chcete vymazať kravu s ušným číslom: " + selectedCow, 
+                "Vymazanie kravy", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                mainPage.Database.DeleteFromDatabase(tableCow, selectedCow);
+                mainPage.Database.SelectDataFromDatabase(tableCow, dataGridView1);
+            }
+        }
+
         MainPage mainPage;
 
         string selectedCow;
+        string tableCow = "KRAVA";
+        string tableLactation = "LAKTACNY_ZAZNAM";
+        string tableHealth = "ZDRAVOTNY_ZAZNAM";
 
-        /*DataSet dataSetCow;
-        DataSet dataSetLactation;
-        DataSet dataSetHealth;*/
     }
 }

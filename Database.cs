@@ -36,6 +36,21 @@ namespace ZadanieSOFI
             }
         }
 
+        public void DeleteFromDatabase (string tableName, string earNumber)
+        {
+            try
+            {
+                string delete = "DELETE FROM " + tableName + " WHERE USNE_CISLO = " + "'" + earNumber + "'";
+
+                Sql = new OracleCommand(delete, Connection);
+                int result = Sql.ExecuteNonQuery();
+            }
+            catch (OracleException e)
+            {
+                MessageBox.Show(e.Message, "Error");
+            }
+        }
+
         public void InsertIntoDatabase (string tableName, string[] values)
         {
             
