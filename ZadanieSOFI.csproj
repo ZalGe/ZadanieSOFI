@@ -73,12 +73,6 @@
     <Compile Include="LogInPage.Designer.cs">
       <DependentUpon>LogInPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewCow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NewCow.Designer.cs">
-      <DependentUpon>NewCow.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutPage.resx">
@@ -92,9 +86,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LogInPage.resx">
       <DependentUpon>LogInPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NewCow.resx">
-      <DependentUpon>NewCow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

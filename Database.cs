@@ -23,7 +23,7 @@ namespace ZadanieSOFI
             }
             catch (OracleException e)
             {
-                MessageBox.Show(e.Message, "Chyba pripojenia");
+                MessageBox.Show(e.Message, "Chyba pripojenia", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -36,71 +36,88 @@ namespace ZadanieSOFI
             }
         }
 
-        public void DeleteFromDatabase (string tableName, string earNumber)
+        public void DeleteFromDatabase (string tableName, string idCol, string idVal)
         {
             try
             {
-                string delete = "DELETE FROM " + tableName + " WHERE USNE_CISLO = " + "'" + earNumber + "'";
+                string delete = "DELETE FROM " + tableName + " WHERE " + idCol + " = " + idVal;
 
                 Sql = new OracleCommand(delete, Connection);
                 int result = Sql.ExecuteNonQuery();
+
+                MessageBox.Show("Záznam bol vymazaný", "Zmazanie záznamu", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (OracleException e)
             {
-                MessageBox.Show(e.Message, "Error");
+                MessageBox.Show(e.Message, "Chyba pri vkladaní záznamu", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        public void InsertIntoDatabase (string tableName, StringBuilder values)
+        public void InsertIntoDatabase (string tableName, string[] values)
         {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for (int i = 0; i < values.Length; i++)
+            {
+                stringBuilder.Append(values[i] + ", ");
+            }
+
+            stringBuilder.Length -= 2;
+
             try
             {
-                string insert = "INSERT INTO " + tableName + " VALUES (" + values.ToString() + ")";
+                string insert = "INSERT INTO " + tableName + " VALUES (" + stringBuilder.ToString() + ")";
 
                 Sql = new OracleCommand(insert, Connection);
                 int result = Sql.ExecuteNonQuery();
+
+                MessageBox.Show("Záznam bol pridaný", "Pridanie záznamu", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (OracleException e)
             {
-                MessageBox.Show(e.Message, "Error");
+                MessageBox.Show(e.Message, "Chyba pri vkladaní záznamu", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        public void InsertIntoDatabase(string tableName, StringBuilder columns, StringBuilder values)
+        public void InsertIntoDatabase(string tableName, string columns, string values)
         {
             try
             {
-                string insert = "INSERT INTO " + tableName + "(" + columns.ToString() + ") " + "VALUES (" + values.ToString() + ")";
+                string insert = "INSERT INTO " + tableName + "(" + columns + ") " + "VALUES (" + values + ")";
 
                 Sql = new OracleCommand(insert, Connection);
                 int result = Sql.ExecuteNonQuery();
+
+                MessageBox.Show("Záznam bol pridaný", "Pridanie záznamu", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (OracleException e)
             {
-                MessageBox.Show(e.Message, "Error");
+                MessageBox.Show(e.Message, "Chyba pri vkladaní záznamu", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        public void UpdateDataInDatabase(string tableName, string[] columns, string[] values, string earNumber)
+        public void UpdateDataInDatabase(string tableName, string[] columns, string[] values, string namePK, string valuePK)
         {
-            StringBuilder stringBuilder = null;
+            StringBuilder stringBuilder = new StringBuilder();
 
             for (int i = 0; i < columns.Length; i++)
             {
                 stringBuilder.Append(columns[i] + " = " + values[i] + ", ");
             }
 
-            stringBuilder.Length = stringBuilder.Length - 2;
+            stringBuilder.Length -= 2;
 
             try
             {
-                string update = "UPDATE " + tableName + "SET " + stringBuilder.ToString() + "WHERE USNE_CISLO = " + earNumber;
+                string update = "UPDATE " + tableName + " SET " + stringBuilder.ToString() + " WHERE " + namePK + " = " + valuePK;
                 Sql = new OracleCommand(update, Connection);
                 int result = Sql.ExecuteNonQuery();
+
+                MessageBox.Show("Záznam bol upravený", "Upravenie záznamu", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (OracleException e)
             {
-                MessageBox.Show(e.Message, "Error");
+                MessageBox.Show(e.Message, "Chyba pri upravovaní záznamu", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
